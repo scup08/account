@@ -7,3 +7,11 @@ server:
 spring:
   application:
     name: account
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.26.128:3306/account_db?useSSL=false
+    username: root
+    password: root
+mybatis:
+  typeAliasesPackage: com.lzh.account.model.entity
+  mapperLocations: classpath:mapper/*Mapper.xml

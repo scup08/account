@@ -11,7 +11,7 @@ import com.lzh.common.annotation.MyBatisRepository;
 @SpringCloudApplication
 @EnableEurekaClient
 //@EnableFeignClients
-@MapperScan(basePackages = "com.github.prontera.persistence", annotationClass = MyBatisRepository.class)
+@MapperScan(basePackages = "com.lzh.account.persistence", annotationClass = MyBatisRepository.class)
 public class AccountApplication {
 
     public static void main(String[] args) {
