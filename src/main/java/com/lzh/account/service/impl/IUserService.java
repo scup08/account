@@ -9,5 +9,5 @@ public interface IUserService {
 	
 	public void addUser();
 	
-	public User findUserByMap();
+	public void findUserByMap();
 }

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzh.account.persistence.TAccountUserMapper">
+  <resultMap id="BaseResultMap" type="com.lzh.account.model.entity.generator.TAccountUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
+    <result column="pwd_salt" jdbcType="VARCHAR" property="pwdSalt" />
+    <result column="balance" jdbcType="BIGINT" property="balance" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_account_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lzh.account.model.entity.generator.TAccountUser">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_account_user (id, create_time, update_time, 
+      delete_time, delete_flag, mobile, 
+      login_pwd, pwd_salt, balance
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, 
+      #{loginPwd,jdbcType=VARCHAR}, #{pwdSalt,jdbcType=VARCHAR}, #{balance,jdbcType=BIGINT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lzh.account.model.entity.generator.TAccountUser">
+    update t_account_user
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      login_pwd = #{loginPwd,jdbcType=VARCHAR},
+      pwd_salt = #{pwdSalt,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, create_time, update_time, delete_time, delete_flag, mobile, login_pwd, 
+    pwd_salt, balance
+    from t_account_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, create_time, update_time, delete_time, delete_flag, mobile, login_pwd, 
+    pwd_salt, balance
+    from t_account_user
+  </select>
+  <resultMap id="BaseResultMap" type="com.lzh.account.model.entity.generator.TAccountUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
+    <result column="pwd_salt" jdbcType="VARCHAR" property="pwdSalt" />
+    <result column="balance" jdbcType="BIGINT" property="balance" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_account_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lzh.account.model.entity.generator.TAccountUser">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_account_user (id, create_time, update_time, 
+      delete_time, delete_flag, mobile, 
+      login_pwd, pwd_salt, balance
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, 
+      #{loginPwd,jdbcType=VARCHAR}, #{pwdSalt,jdbcType=VARCHAR}, #{balance,jdbcType=BIGINT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lzh.account.model.entity.generator.TAccountUser">
+    update t_account_user
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      login_pwd = #{loginPwd,jdbcType=VARCHAR},
+      pwd_salt = #{pwdSalt,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, create_time, update_time, delete_time, delete_flag, mobile, login_pwd, 
+    pwd_salt, balance
+    from t_account_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, create_time, update_time, delete_time, delete_flag, mobile, login_pwd, 
+    pwd_salt, balance
+    from t_account_user
+  </select>
+</mapper>

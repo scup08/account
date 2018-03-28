@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzh.account.persistence.TAccountUserBalanceTccMapper">
+  <resultMap id="BaseResultMap" type="com.lzh.account.model.entity.generator.TAccountUserBalanceTcc">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="amount" jdbcType="BIGINT" property="amount" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="t_account_user_id" jdbcType="BIGINT" property="tAccountUserId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_account_user_balance_tcc
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lzh.account.model.entity.generator.TAccountUserBalanceTcc">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_account_user_balance_tcc (id, create_time, update_time, 
+      delete_time, delete_flag, expire_time, 
+      amount, `status`, t_account_user_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER}, #{expireTime,jdbcType=TIMESTAMP}, 
+      #{amount,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{tAccountUserId,jdbcType=BIGINT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lzh.account.model.entity.generator.TAccountUserBalanceTcc">
+    update t_account_user_balance_tcc
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      amount = #{amount,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=TINYINT},
+      t_account_user_id = #{tAccountUserId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, create_time, update_time, delete_time, delete_flag, expire_time, amount, 
+    `status`, t_account_user_id
+    from t_account_user_balance_tcc
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, create_time, update_time, delete_time, delete_flag, expire_time, amount, 
+    `status`, t_account_user_id
+    from t_account_user_balance_tcc
+  </select>
+  <resultMap id="BaseResultMap" type="com.lzh.account.model.entity.generator.TAccountUserBalanceTcc">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="amount" jdbcType="BIGINT" property="amount" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="t_account_user_id" jdbcType="BIGINT" property="tAccountUserId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_account_user_balance_tcc
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lzh.account.model.entity.generator.TAccountUserBalanceTcc">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_account_user_balance_tcc (id, create_time, update_time, 
+      delete_time, delete_flag, expire_time, 
+      amount, `status`, t_account_user_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER}, #{expireTime,jdbcType=TIMESTAMP}, 
+      #{amount,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{tAccountUserId,jdbcType=BIGINT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lzh.account.model.entity.generator.TAccountUserBalanceTcc">
+    update t_account_user_balance_tcc
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      amount = #{amount,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=TINYINT},
+      t_account_user_id = #{tAccountUserId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, create_time, update_time, delete_time, delete_flag, expire_time, amount, 
+    `status`, t_account_user_id
+    from t_account_user_balance_tcc
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, create_time, update_time, delete_time, delete_flag, expire_time, amount, 
+    `status`, t_account_user_id
+    from t_account_user_balance_tcc
+  </select>
+</mapper>
