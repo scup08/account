@@ -4,17 +4,16 @@
 <generatorConfiguration>
 
 	<classPathEntry location="E:\dev\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar" />
+	<!-- 
 	<classPathEntry location="E:\dev\repository\com\lzh\common\0.0.1-SNAPSHOT\common-0.0.1-SNAPSHOT.jar" />  
-
-    <context id="account" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+	 -->
+    <context id="account" targetRuntime="MyBatis3" defaultModelType="flat">
     	<!-- 开始分隔符 -->
     	<property name="beginningDelimiter" value="`"/>
     	<!-- 结束分隔符 -->
     	<property name="endingDelimiter" value="`"/>
     	<!-- 如果表名或字段名为sql关键字，自动为其添加分隔符 -->
     	<property name="autoDelimitKeywords" value="true"/>
-    	<!-- 结束分隔符 -->
-    	<property name="endingDelimiter" value="`"/>
     	
     	<!-- 生产注释 -->
     	<!-- 
@@ -41,11 +40,10 @@
         <javaModelGenerator targetPackage="com.lzh.account.model.entity.generator"
                             targetProject="F:\hadoop\git\account\src\main\java">
             <property name="enableSubPackages" value="false"/>
-            <!--<property name="trimStrings" value="true"/>-->
+            <property name="trimStrings" value="true"/>
             <!--<property name="immutable" value="true"/>
+            <property name="rootClass" value="com.lzh.account.model.entity.BasicDomain"/>
             -->
-            <property name="rootClass" value="com.lzh.common.model.entity.BasicDomain"/>
-            
         </javaModelGenerator>
 
 		<!-- 
@@ -56,7 +54,7 @@
  		-->
         <sqlMapGenerator targetPackage="mapper"  
         				 targetProject="F:\hadoop\git\account\src\main\resources">
-        	<property name="rootInterface" value="com.lzh.common.persistence.CrudMapper"/>
+        	
         </sqlMapGenerator>
         
         <javaClientGenerator targetPackage="com.lzh.account.persistence"
@@ -64,7 +62,11 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 		
-		<table tableName="%" >
+		<table tableName="%"  enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<!-- 
+			<property name="rootInterface" value="com.lzh.common.persistence.CrudMapper"/>
+			 -->
 			<generatedKey column="id" sqlStatement="Mysql"/>
 		</table>
 

@@ -1,6 +1,6 @@
 package com.lzh.account.service.impl;
 
-import java.time.OffsetDateTime;
+import java.util.Date;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -15,11 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.base.Preconditions;
 import com.lzh.account.event.ReservedBalanceCancellationEvent;
-import com.lzh.account.model.entity.User;
-import com.lzh.account.model.entity.UserBalanceTcc;
+import com.lzh.account.model.entity.generator.TAccountUser;
+import com.lzh.account.model.entity.generator.TAccountUserBalanceTcc;
 import com.lzh.account.model.entity.type.TccStatus;
-import com.lzh.account.persistence.UserBalanceTccMapper;
-import com.lzh.account.persistence.UserMapper;
+import com.lzh.account.persistence.TAccountUserBalanceTccMapper;
+import com.lzh.account.persistence.TAccountUserMapper;
 import com.lzh.common.Shift;
 import com.lzh.common.StatusCode;
 import com.lzh.common.exception.ReservationExpireException;
@@ -27,35 +27,35 @@ import com.lzh.common.persistence.CrudMapper;
 import com.lzh.common.service.impl.CrudServiceImpl;
 
 /**
- * @author Zhao Junjian
+ * @author 
  */
 @Service
-public class UserBalanceTccService extends CrudServiceImpl<UserBalanceTcc> implements ApplicationContextAware {
+public class UserBalanceTccService extends CrudServiceImpl<TAccountUserBalanceTcc> implements ApplicationContextAware {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserBalanceTccService.class);
 
     @Autowired
     private UserService userService;
     @Autowired
-    private UserMapper userMapper;
+    private TAccountUserMapper userMapper;
     @Autowired
-    private UserBalanceTccMapper balanceTccMapper;
+    private TAccountUserBalanceTccMapper balanceTccMapper;
     // Autowired
     private ApplicationContext context;
 
     @Autowired
-    public UserBalanceTccService(CrudMapper<UserBalanceTcc> mapper) {
+    public UserBalanceTccService(CrudMapper<TAccountUserBalanceTcc> mapper) {
         super(mapper);
     }
 
-    public UserBalanceTcc trying(long userId, long amount) {
+    public TAccountUserBalanceTcc trying(long userId, long amount) {
         return trying(userId, amount, 15);
     }
 
-    public UserBalanceTcc trying(long userId, long amount, long expireSeconds) {
+    public TAccountUserBalanceTcc trying(long userId, long amount, long expireSeconds) {
         Preconditions.checkArgument(userId > 0);
         Preconditions.checkArgument(amount > 0);
         Preconditions.checkArgument(expireSeconds > 0);
-        final User user = userService.find(userId);
+        final TAccountUser user = userService.find(userId);
         if (user == null) {
             Shift.fatal(StatusCode.USER_NOT_EXISTS);
         }
@@ -63,19 +63,20 @@ public class UserBalanceTccService extends CrudServiceImpl<UserBalanceTcc> imple
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public UserBalanceTcc trying(User user, long amount, long expireSeconds) {
+    public TAccountUserBalanceTcc trying(TAccountUser user, long amount, long expireSeconds) {
         Preconditions.checkNotNull(user);
         Preconditions.checkNotNull(user.getId());
         Preconditions.checkArgument(amount > 0);
-        final int isLock = userMapper.consumeBalance(user.getId(), amount);
+//        final int isLock = userMapper.consumeBalance(user.getId(), amount);
+        final int isLock = 0;
         if (isLock == 0) {
             Shift.fatal(StatusCode.INSUFFICIENT_BALANCE);
         }
-        final UserBalanceTcc tcc = new UserBalanceTcc();
+        final TAccountUserBalanceTcc tcc = new TAccountUserBalanceTcc();
         tcc.setAmount(amount);
-        tcc.setStatus(TccStatus.TRY);
-        tcc.setUserId(user.getId());
-        tcc.setExpireTime(OffsetDateTime.now().plusSeconds(expireSeconds));
+        tcc.setStatus(TccStatus.TRY.getStatus());
+        tcc.settAccountUserId(user.getId());
+        tcc.setExpireTime(new Date(expireSeconds));
         persistNonNullProperties(tcc);
         return tcc;
     }
@@ -86,8 +87,9 @@ public class UserBalanceTccService extends CrudServiceImpl<UserBalanceTcc> imple
     @Scheduled(fixedRate = 1000)
     public void autoCancelTrying() {
         // 获取过期的资源
-        final Set<UserBalanceTcc> reservations = balanceTccMapper.selectExpireReservation(100);
-        for (UserBalanceTcc res : reservations) {
+//        final Set<TAccountUserBalanceTcc> reservations = balanceTccMapper.selectExpireReservation(100);
+    	final Set<TAccountUserBalanceTcc> reservations = null;
+        for (TAccountUserBalanceTcc res : reservations) {
             context.publishEvent(new ReservedBalanceCancellationEvent(res));
         }
     }
@@ -95,7 +97,7 @@ public class UserBalanceTccService extends CrudServiceImpl<UserBalanceTcc> imple
     @Transactional(rollbackFor = Exception.class)
     public void cancelReservation(Long id) {
         Preconditions.checkNotNull(id);
-        final UserBalanceTcc balanceTcc = find(id);
+        final TAccountUserBalanceTcc balanceTcc = find(id);
         // 无法获取说明不存在或者是已经被补偿
         if (balanceTcc == null) {
             throw new ReservationExpireException("resource " + id + " has been cancelled or does not exist at all");
@@ -104,21 +106,23 @@ public class UserBalanceTccService extends CrudServiceImpl<UserBalanceTcc> imple
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void cancelReservation(UserBalanceTcc res) {
+    public void cancelReservation(TAccountUserBalanceTcc res) {
         Preconditions.checkNotNull(res);
         Preconditions.checkNotNull(res.getId());
         Preconditions.checkNotNull(res.getAmount());
-        Preconditions.checkNotNull(res.getUserId());
+        Preconditions.checkNotNull(res.gettAccountUserId());
         Preconditions.checkNotNull(res.getStatus());
         // 只能补偿在TRY阶段
-        if (res.getStatus() == TccStatus.TRY) {
+        if (res.getStatus() == TccStatus.TRY.getStatus()) {
             // 依赖行锁, 必须开启事务
-            final int isSucceedInDeleting = balanceTccMapper.deleteTryingById(res.getId());
+//            final int isSucceedInDeleting = balanceTccMapper.deleteTryingById(res.getId());
+        	final int isSucceedInDeleting = 1;
             // 删除成功后才能进行补偿
             if (isSucceedInDeleting == 1) {
-                final int isSuccessful = userMapper.returnReservedBalance(res.getUserId(), res.getAmount());
+//                final int isSuccessful = userMapper.returnReservedBalance(res.gettAccountUserId(), res.getAmount());
+            	final int isSuccessful = 0 ;
                 if (isSuccessful == 0) {
-                    throw new IllegalStateException("balance reservation id " + res.getId() + " was succeeded in deleting, but failed to make compensation for user id " + res.getUserId());
+                    throw new IllegalStateException("balance reservation id " + res.getId() + " was succeeded in deleting, but failed to make compensation for user id " + res.gettAccountUserId());
                 }
             }
         }
@@ -127,14 +131,15 @@ public class UserBalanceTccService extends CrudServiceImpl<UserBalanceTcc> imple
     @Transactional(rollbackFor = Exception.class)
     public void confirmReservation(Long id) {
         Preconditions.checkNotNull(id);
-        final UserBalanceTcc balanceTcc = find(id);
+        final TAccountUserBalanceTcc balanceTcc = find(id);
         // 无法获取说明不存在或者是已经被补偿
         if (balanceTcc == null) {
             throw new ReservationExpireException("resource " + id + " has been cancelled or does not exist at all");
         }
         // 如果为Try阶段则进行确认
-        if (balanceTcc.getStatus() == TccStatus.TRY) {
-            final int isSuccessful = balanceTccMapper.updateToConfirmationById(id);
+        if (balanceTcc.getStatus() == TccStatus.TRY.getStatus()) {
+//            final int isSuccessful = balanceTccMapper.updateToConfirmationById(id);
+        	final int isSuccessful = 0 ;
             // 如果返回0则说明已经被撤销
             if (isSuccessful == 0) {
                 throw new ReservationExpireException("resource " + id + " has been cancelled");

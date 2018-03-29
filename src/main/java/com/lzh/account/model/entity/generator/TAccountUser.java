@@ -1,9 +1,8 @@
 package com.lzh.account.model.entity.generator;
 
-import com.lzh.common.model.entity.BasicDomain;
 import java.util.Date;
 
-public class TAccountUser extends BasicDomain {
+public class TAccountUser {
     private Long id;
 
     private Date createTime;
@@ -67,7 +66,7 @@ public class TAccountUser extends BasicDomain {
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile;
+        this.mobile = mobile == null ? null : mobile.trim();
     }
 
     public String getLoginPwd() {
@@ -75,7 +74,7 @@ public class TAccountUser extends BasicDomain {
     }
 
     public void setLoginPwd(String loginPwd) {
-        this.loginPwd = loginPwd;
+        this.loginPwd = loginPwd == null ? null : loginPwd.trim();
     }
 
     public String getPwdSalt() {
@@ -83,7 +82,7 @@ public class TAccountUser extends BasicDomain {
     }
 
     public void setPwdSalt(String pwdSalt) {
-        this.pwdSalt = pwdSalt;
+        this.pwdSalt = pwdSalt == null ? null : pwdSalt.trim();
     }
 
     public Long getBalance() {

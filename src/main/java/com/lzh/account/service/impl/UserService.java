@@ -16,8 +16,8 @@ import com.lzh.account.model.dto.request.LoginRequest;
 import com.lzh.account.model.dto.request.RegisterRequest;
 import com.lzh.account.model.dto.response.LoginResponse;
 import com.lzh.account.model.dto.response.RegisterResponse;
-import com.lzh.account.model.entity.User;
-import com.lzh.account.persistence.UserMapper;
+import com.lzh.account.model.entity.generator.TAccountUser;
+import com.lzh.account.persistence.TAccountUserMapper;
 import com.lzh.common.Shift;
 import com.lzh.common.StatusCode;
 import com.lzh.common.persistence.CrudMapper;
@@ -28,26 +28,26 @@ import com.lzh.common.util.OrikaMapper;
  * @author Zhao Junjian
  */
 @Service
-public class UserService extends CrudServiceImpl<User> {
+public class UserService extends CrudServiceImpl<TAccountUser> {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
-    private UserMapper mapper;
+    private TAccountUserMapper mapper;
 
     @Autowired
-    public UserService(CrudMapper<User> mapper) {
+    public UserService(CrudMapper<TAccountUser> mapper) {
         super(mapper);
     }
 
     @Transactional(rollbackFor = Exception.class)
     public RegisterResponse register(RegisterRequest request) {
         Preconditions.checkNotNull(request);
-        final User dbUser = find(request.getMobile());
+        final TAccountUser dbUser = find(request.getMobile());
         if (dbUser != null) {
             Shift.fatal(StatusCode.USER_EXISTS);
         }
         // 重新计算密码
-        final User transientUser = OrikaMapper.map(request, User.class);
+        final TAccountUser transientUser = OrikaMapper.map(request, TAccountUser.class);
         final String salt = generateRandomPasswordSalt();
         final String loginPassword = digestWithSalt(transientUser.getLoginPwd(), salt);
         transientUser.setPwdSalt(salt);
@@ -60,7 +60,7 @@ public class UserService extends CrudServiceImpl<User> {
     @Deprecated
     public LoginResponse login(LoginRequest request) {
         Preconditions.checkNotNull(request);
-        final User user = find(request.getMobile());
+        final TAccountUser user = find(request.getMobile());
         if (user == null) {
             Shift.fatal(StatusCode.USER_NOT_EXISTS);
         }
@@ -75,20 +75,21 @@ public class UserService extends CrudServiceImpl<User> {
         return response;
     }
 
-    public User find(String mobile) {
+    public TAccountUser find(String mobile) {
         Preconditions.checkNotNull(mobile);
-        User result = null;
+        TAccountUser result = null;
         if (!mobile.isEmpty()) {
             final String escapeMobile = HtmlEscapers.htmlEscaper().escape(mobile);
-            result = mapper.selectByMobile(escapeMobile);
+//            result = mapper.selectByMobile(escapeMobile);
         }
         return result;
     }
 
-    public List<User> findAll(int offset, int limited) {
+    public List<TAccountUser> findAll(int offset, int limited) {
         Preconditions.checkArgument(offset > -1);
         Preconditions.checkArgument(limited > -1);
-        return mapper.selectAll(offset, limited);
+//        return mapper.selectAll(offset, limited);
+        return null;
     }
 
     private String digestWithSalt(String content, String key) {

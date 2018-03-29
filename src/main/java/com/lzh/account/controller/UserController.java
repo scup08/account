@@ -18,7 +18,7 @@ import com.lzh.account.model.dto.request.RegisterRequest;
 import com.lzh.account.model.dto.response.ObjectCollectionResponse;
 import com.lzh.account.model.dto.response.ObjectDataResponse;
 import com.lzh.account.model.dto.response.RegisterResponse;
-import com.lzh.account.model.entity.User;
+import com.lzh.account.model.entity.generator.TAccountUser;
 import com.lzh.account.service.impl.UserService;
 import com.lzh.common.Shift;
 import com.lzh.common.StatusCode;
@@ -36,8 +36,8 @@ public class UserController {
 //    @RandomlyThrowsException
 //    @ApiOperation(value = "根据ID获取用户", notes = "")
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
-    public ObjectDataResponse<User> findUser(@PathVariable Long userId) {
-        final User user = userService.find(userId);
+    public ObjectDataResponse<TAccountUser> findUser(@PathVariable Long userId) {
+        final TAccountUser user = userService.find(userId);
         if (user == null) {
             Shift.fatal(StatusCode.USER_NOT_EXISTS);
         }
@@ -48,8 +48,8 @@ public class UserController {
 //    @RandomlyThrowsException
 //    @ApiOperation(value = "获取全部用户", notes = "")
     @RequestMapping(value = "/users", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
-    public ObjectCollectionResponse<User> findAll() {
-        final List<User> userList = userService.findAll(0, 10000);
+    public ObjectCollectionResponse<TAccountUser> findAll() {
+        final List<TAccountUser> userList = userService.findAll(0, 10000);
         return new ObjectCollectionResponse<>(userList);
     }
 
@@ -65,8 +65,8 @@ public class UserController {
 //    @RandomlyThrowsException
 //    @ApiOperation(value = "用户余额变更", notes = "直接变更指定用户的余额")
     @RequestMapping(value = "/users/{userId}/balance", method = RequestMethod.PATCH)
-    public ObjectDataResponse<User> recharge(@PathVariable Long userId, @Valid @RequestBody RechargeRequest request, BindingResult error) {
-        final User user = userService.find(userId);
+    public ObjectDataResponse<TAccountUser> recharge(@PathVariable Long userId, @Valid @RequestBody RechargeRequest request, BindingResult error) {
+        final TAccountUser user = userService.find(userId);
         if (user == null) {
             Shift.fatal(StatusCode.USER_NOT_EXISTS);
         }

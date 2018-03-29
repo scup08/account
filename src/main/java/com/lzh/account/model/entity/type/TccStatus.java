@@ -1,7 +1,7 @@
 package com.lzh.account.model.entity.type;
 
 /**
- * @author Zhao Junjian
+ * @author 
  */
 public enum TccStatus {
     TRY(0), CONFIRM(1);

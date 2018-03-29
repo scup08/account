@@ -1,9 +1,8 @@
 package com.lzh.account.model.entity.generator;
 
-import com.lzh.common.model.entity.BasicDomain;
 import java.util.Date;
 
-public class TAccountUserBalanceTcc extends BasicDomain {
+public class TAccountUserBalanceTcc {
     private Long id;
 
     private Date createTime;
@@ -18,7 +17,7 @@ public class TAccountUserBalanceTcc extends BasicDomain {
 
     private Long amount;
 
-    private Byte status;
+    private Integer status;
 
     private Long tAccountUserId;
 
@@ -78,11 +77,11 @@ public class TAccountUserBalanceTcc extends BasicDomain {
         this.amount = amount;
     }
 
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

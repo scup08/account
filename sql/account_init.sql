@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `account_db`.`t_account_user_balance_tcc`(
   `delete_flag` INT DEFAULT 0 COMMENT '0-正常，1-已删除',
   `expire_time` DATETIME DEFAULT '1970-01-01 00:00:00' COMMENT '过期时间',
   `amount` BIGINT  COMMENT '预留资源金额',
-  `status` TINYINT DEFAULT 0 COMMENT '0为try, 1为confirm完成',
+  `status` int DEFAULT 0 COMMENT '0为try, 1为confirm完成',
   `t_account_user_id` BIGINT(19) UNSIGNED COMMENT 't_account_user表主键',
   PRIMARY KEY (`id`),
   INDEX `fk_t_account_user_tcc_status_exptime` (`status` ASC , `expire_time` ASC)
