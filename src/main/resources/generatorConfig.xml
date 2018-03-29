@@ -60,6 +60,7 @@
         <javaClientGenerator targetPackage="com.lzh.account.persistence"
                              targetProject="F:\hadoop\git\account\src\main\java" type="XMLMAPPER">
             <property name="enableSubPackages" value="false"/>
+            <property name="rootInterface" value="com.lzh.common.persistence.CrudMapper"/>
         </javaClientGenerator>
 		
 		<table tableName="%"  enableCountByExample="false" enableUpdateByExample="false"
