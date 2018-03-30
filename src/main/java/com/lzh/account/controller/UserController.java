@@ -18,7 +18,7 @@ import com.lzh.account.model.dto.request.RegisterRequest;
 import com.lzh.account.model.dto.response.ObjectCollectionResponse;
 import com.lzh.account.model.dto.response.ObjectDataResponse;
 import com.lzh.account.model.dto.response.RegisterResponse;
-import com.lzh.account.model.entity.generator.TAccountUser;
+import com.lzh.account.model.entity.TAccountUser;
 import com.lzh.account.service.impl.UserService;
 import com.lzh.common.Shift;
 import com.lzh.common.StatusCode;

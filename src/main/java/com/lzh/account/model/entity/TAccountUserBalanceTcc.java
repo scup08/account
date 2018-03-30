@@ -1,4 +1,4 @@
-package com.lzh.account.model.entity.generator;
+package com.lzh.account.model.entity;
 
 import java.util.Date;
 

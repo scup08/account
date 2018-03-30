@@ -37,7 +37,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.lzh.account.model.entity.generator"
+        <javaModelGenerator targetPackage="com.lzh.account.generator"
                             targetProject="F:\hadoop\git\account\src\main\java">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
@@ -52,12 +52,12 @@
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
  		-->
-        <sqlMapGenerator targetPackage="mapper"  
+        <sqlMapGenerator targetPackage="generator"  
         				 targetProject="F:\hadoop\git\account\src\main\resources">
         	
         </sqlMapGenerator>
         
-        <javaClientGenerator targetPackage="com.lzh.account.persistence"
+        <javaClientGenerator targetPackage="com.lzh.account.generator"
                              targetProject="F:\hadoop\git\account\src\main\java" type="XMLMAPPER">
             <property name="enableSubPackages" value="false"/>
             <property name="rootInterface" value="com.lzh.common.persistence.CrudMapper"/>

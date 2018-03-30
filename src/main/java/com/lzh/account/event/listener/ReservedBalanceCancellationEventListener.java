@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.base.Preconditions;
 import com.lzh.account.event.ReservedBalanceCancellationEvent;
-import com.lzh.account.model.entity.generator.TAccountUserBalanceTcc;
+import com.lzh.account.model.entity.TAccountUserBalanceTcc;
 import com.lzh.account.service.impl.UserBalanceTccService;
 
 /**

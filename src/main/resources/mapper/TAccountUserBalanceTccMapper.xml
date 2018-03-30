@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lzh.account.persistence.TAccountUserBalanceTccMapper">
-  <resultMap id="BaseResultMap" type="com.lzh.account.model.entity.generator.TAccountUserBalanceTcc">
+  <resultMap id="BaseResultMap" type="TAccountUserBalanceTcc">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -26,7 +26,7 @@
     delete from t_account_user_balance_tcc
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.lzh.account.model.entity.generator.TAccountUserBalanceTcc">
+  <insert id="insert" parameterType="TAccountUserBalanceTcc">
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -39,7 +39,7 @@
       #{amount,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{tAccountUserId,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lzh.account.model.entity.generator.TAccountUserBalanceTcc">
+  <insert id="insertSelective" parameterType="TAccountUserBalanceTcc">
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -99,7 +99,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lzh.account.model.entity.generator.TAccountUserBalanceTcc">
+  <update id="updateByPrimaryKeySelective" parameterType="TAccountUserBalanceTcc">
     update t_account_user_balance_tcc
     <set>
       <if test="createTime != null">
@@ -129,7 +129,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lzh.account.model.entity.generator.TAccountUserBalanceTcc">
+  <update id="updateByPrimaryKey" parameterType="TAccountUserBalanceTcc">
     update t_account_user_balance_tcc
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},

@@ -16,7 +16,7 @@ import com.lzh.account.model.dto.request.LoginRequest;
 import com.lzh.account.model.dto.request.RegisterRequest;
 import com.lzh.account.model.dto.response.LoginResponse;
 import com.lzh.account.model.dto.response.RegisterResponse;
-import com.lzh.account.model.entity.generator.TAccountUser;
+import com.lzh.account.model.entity.TAccountUser;
 import com.lzh.account.persistence.TAccountUserMapper;
 import com.lzh.common.Shift;
 import com.lzh.common.StatusCode;
@@ -88,8 +88,7 @@ public class UserService extends CrudServiceImpl<TAccountUser> {
     public List<TAccountUser> findAll(int offset, int limited) {
         Preconditions.checkArgument(offset > -1);
         Preconditions.checkArgument(limited > -1);
-//        return mapper.selectAll(offset, limited);
-        return null;
+        return mapper.selectAll(offset, limited);
     }
 
     private String digestWithSalt(String content, String key) {

@@ -1,11 +1,9 @@
-package com.lzh.account.persistence;
+package com.lzh.account.generator;
 
-import com.lzh.account.model.entity.TAccountUserBalanceTcc;
-import com.lzh.common.annotation.MyBatisRepository;
+import com.lzh.account.generator.TAccountUserBalanceTcc;
 import com.lzh.common.persistence.CrudMapper;
 
-@MyBatisRepository
-public interface TAccountUserBalanceTccMapper extends CrudMapper<TAccountUserBalanceTcc> {
+public interface TAccountUserBalanceTccMapper extends CrudMapper {
     int deleteByPrimaryKey(Long id);
 
     int insert(TAccountUserBalanceTcc record);

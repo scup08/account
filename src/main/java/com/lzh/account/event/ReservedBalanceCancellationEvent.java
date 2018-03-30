@@ -2,7 +2,7 @@ package com.lzh.account.event;
 
 import org.springframework.context.ApplicationEvent;
 
-import com.lzh.account.model.entity.generator.TAccountUserBalanceTcc;
+import com.lzh.account.model.entity.TAccountUserBalanceTcc;
 
 /**
  * @author 

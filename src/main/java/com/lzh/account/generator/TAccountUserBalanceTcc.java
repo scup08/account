@@ -1,8 +1,8 @@
-package com.lzh.account.model.entity.generator;
+package com.lzh.account.generator;
 
 import java.util.Date;
 
-public class TAccountUser {
+public class TAccountUserBalanceTcc {
     private Long id;
 
     private Date createTime;
@@ -13,13 +13,13 @@ public class TAccountUser {
 
     private Integer deleteFlag;
 
-    private String mobile;
+    private Date expireTime;
 
-    private String loginPwd;
+    private Long amount;
 
-    private String pwdSalt;
+    private Integer status;
 
-    private Long balance;
+    private Long tAccountUserId;
 
     public Long getId() {
         return id;
@@ -61,35 +61,35 @@ public class TAccountUser {
         this.deleteFlag = deleteFlag;
     }
 
-    public String getMobile() {
-        return mobile;
+    public Date getExpireTime() {
+        return expireTime;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
+    public void setExpireTime(Date expireTime) {
+        this.expireTime = expireTime;
     }
 
-    public String getLoginPwd() {
-        return loginPwd;
+    public Long getAmount() {
+        return amount;
     }
 
-    public void setLoginPwd(String loginPwd) {
-        this.loginPwd = loginPwd == null ? null : loginPwd.trim();
+    public void setAmount(Long amount) {
+        this.amount = amount;
     }
 
-    public String getPwdSalt() {
-        return pwdSalt;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setPwdSalt(String pwdSalt) {
-        this.pwdSalt = pwdSalt == null ? null : pwdSalt.trim();
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public Long getBalance() {
-        return balance;
+    public Long gettAccountUserId() {
+        return tAccountUserId;
     }
 
-    public void setBalance(Long balance) {
-        this.balance = balance;
+    public void settAccountUserId(Long tAccountUserId) {
+        this.tAccountUserId = tAccountUserId;
     }
 }
