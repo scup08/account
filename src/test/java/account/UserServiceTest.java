@@ -33,7 +33,8 @@ public class UserServiceTest {
 		Assert.assertFalse("没有数据", list.size()<=0);  
 	}
 
-	@Test(expected=DuplicateKeyException.class)
+//	@Test(expected=DuplicateKeyException.class)
+	@Test
 	public void testRegister() {
 		RegisterRequest  rr = new RegisterRequest();
 		rr.setBalance(new Long(10000));

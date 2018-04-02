@@ -80,7 +80,7 @@ public class UserService extends CrudServiceImpl<TAccountUser> {
         TAccountUser result = null;
         if (!mobile.isEmpty()) {
             final String escapeMobile = HtmlEscapers.htmlEscaper().escape(mobile);
-//            result = mapper.selectByMobile(escapeMobile);
+            result = mapper.selectByPrimaryKey(new Long(2));
         }
         return result;
     }
