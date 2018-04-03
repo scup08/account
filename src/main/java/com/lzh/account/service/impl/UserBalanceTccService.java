@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.base.Preconditions;
-import com.lzh.account.event.ReservedBalanceCancellationEvent;
+//import com.lzh.account.event.ReservedBalanceCancellationEvent;
 import com.lzh.account.model.entity.TAccountUser;
 import com.lzh.account.model.entity.TAccountUserBalanceTcc;
 import com.lzh.account.model.entity.type.TccStatus;
@@ -90,7 +90,7 @@ public class UserBalanceTccService extends CrudServiceImpl<TAccountUserBalanceTc
 //        final Set<TAccountUserBalanceTcc> reservations = balanceTccMapper.selectExpireReservation(100);
     	final Set<TAccountUserBalanceTcc> reservations = null;
         for (TAccountUserBalanceTcc res : reservations) {
-            context.publishEvent(new ReservedBalanceCancellationEvent(res));
+//            context.publishEvent(new ReservedBalanceCancellationEvent(res));
         }
     }
 
