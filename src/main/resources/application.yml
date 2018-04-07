@@ -9,7 +9,8 @@ spring:
     name: account
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.26.128:3306/account_db?useSSL=false
+    #url: jdbc:mysql://192.168.26.128:3306/account_db?useSSL=false
+    url: jdbc:mysql://192.168.121.5:3306/account_db?useSSL=false
     username: root
     password: root
 mybatis:
