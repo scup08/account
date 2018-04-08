@@ -16,8 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.lzh.account.AccountApplication;
 import com.lzh.account.model.dto.request.RegisterRequest;
 import com.lzh.account.model.dto.response.RegisterResponse;
-import com.lzh.account.model.entity.TAccountUser;
 import com.lzh.account.service.impl.UserService;
+import com.lzh.common.model.entity.account.TAccountUser;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=AccountApplication.class)

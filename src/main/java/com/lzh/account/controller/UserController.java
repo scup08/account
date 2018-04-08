@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lzh.account.model.dto.request.RechargeRequest;
 import com.lzh.account.model.dto.request.RegisterRequest;
 import com.lzh.account.model.dto.response.RegisterResponse;
-import com.lzh.account.model.entity.TAccountUser;
 import com.lzh.account.service.impl.UserService;
 import com.lzh.common.Shift;
 import com.lzh.common.StatusCode;
 import com.lzh.common.model.dto.response.ObjectCollectionResponse;
 import com.lzh.common.model.dto.response.ObjectDataResponse;
+import com.lzh.common.model.entity.account.TAccountUser;
 
 /**
  * @author 
@@ -50,7 +50,7 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
     public ObjectCollectionResponse<TAccountUser> findAll() {
         final List<TAccountUser> userList = userService.findAll(0, 10000);
-        return new ObjectCollectionResponse<>(userList);
+        return new ObjectCollectionResponse<TAccountUser>(userList);
     }
 
 //    @Delay

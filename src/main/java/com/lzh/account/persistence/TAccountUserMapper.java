@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.lzh.account.model.entity.TAccountUser;
 import com.lzh.common.annotation.MyBatisRepository;
+import com.lzh.common.model.entity.account.TAccountUser;
 import com.lzh.common.persistence.CrudMapper;
 
 

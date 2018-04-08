@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.base.Preconditions;
-//import com.lzh.account.event.ReservedBalanceCancellationEvent;
-import com.lzh.account.model.entity.TAccountUser;
 import com.lzh.account.model.entity.TAccountUserBalanceTcc;
 import com.lzh.account.model.entity.type.TccStatus;
 import com.lzh.account.persistence.TAccountUserBalanceTccMapper;
@@ -23,6 +21,7 @@ import com.lzh.account.persistence.TAccountUserMapper;
 import com.lzh.common.Shift;
 import com.lzh.common.StatusCode;
 import com.lzh.common.exception.ReservationExpireException;
+import com.lzh.common.model.entity.account.TAccountUser;
 import com.lzh.common.persistence.CrudMapper;
 import com.lzh.common.service.impl.CrudServiceImpl;
 
