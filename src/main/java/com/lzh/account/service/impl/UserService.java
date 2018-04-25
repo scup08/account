@@ -22,7 +22,7 @@ import com.lzh.common.StatusCode;
 import com.lzh.common.model.entity.account.TAccountUser;
 import com.lzh.common.persistence.CrudMapper;
 import com.lzh.common.service.impl.CrudServiceImpl;
-import com.lzh.common.util.OrikaMapper;
+//import com.lzh.common.util.OrikaMapper;
 
 /**
  * @author 
@@ -47,14 +47,16 @@ public class UserService extends CrudServiceImpl<TAccountUser> {
             Shift.fatal(StatusCode.USER_EXISTS);
         }
         // 重新计算密码
-        final TAccountUser transientUser = OrikaMapper.map(request, TAccountUser.class);
+        final TAccountUser transientUser =null ;
+//        OrikaMapper.map(request, TAccountUser.class);
         final String salt = generateRandomPasswordSalt();
         final String loginPassword = digestWithSalt(transientUser.getLoginPwd(), salt);
         transientUser.setPwdSalt(salt);
         transientUser.setLoginPwd(loginPassword);
         // 混合盐后入库
         persistNonNullProperties(transientUser);
-        return OrikaMapper.map(transientUser, RegisterResponse.class);
+        return null;
+//        OrikaMapper.map(transientUser, RegisterResponse.class);
     }
 
     @Deprecated
