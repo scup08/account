@@ -16,7 +16,6 @@
 	</parent>
 
 	<properties>
-		<common.version>0.0.1-SNAPSHOT</common.version>
 		<dao.target.dir>src/main/java/com/lzh/account/model/entity/generator/</dao.target.dir>
 	</properties>
 
