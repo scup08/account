@@ -27,6 +27,7 @@ public class UserServiceTest {
 	UserService userService;
 	
 	@Test
+	@Ignore
 	public void testFindAll() {
 		List<TAccountUser> list = userService.findAll(0, 2);
 		Assert.assertTrue("有数据", list.size()>0);  
@@ -35,6 +36,7 @@ public class UserServiceTest {
 
 //	@Test(expected=DuplicateKeyException.class)
 	@Test
+	@Ignore
 	public void testRegister() {
 		RegisterRequest  rr = new RegisterRequest();
 		rr.setBalance(new Long(10000));
