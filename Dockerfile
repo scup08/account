@@ -8,7 +8,7 @@ ENV PATH $JRE_HOME/bin:$PATH
 ENV CLASSPATH=$JRE_HOME/lib/rt.jar:$JRE_HOME/lib/ext
 
 # 开放1111端口
-EXPOSE 9030
+EXPOSE 9011
 
 # 配置容器启动后执行的命令
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","-Xms256m","-Xmx256m","/app.jar"]
