@@ -1,4 +1,4 @@
-package com.lzh.account.service.impl;
+package com.lzh.account.service;
 
 /**
  * 用户服务相关

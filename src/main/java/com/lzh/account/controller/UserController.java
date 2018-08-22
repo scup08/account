@@ -41,7 +41,7 @@ public class UserController {
         if (user == null) {
             Shift.fatal(StatusCode.USER_NOT_EXISTS);
         }
-        return new ObjectDataResponse<>(user);
+        return new ObjectDataResponse<TAccountUser>(user);
     }
 
 //    @Delay
@@ -72,7 +72,7 @@ public class UserController {
         }
         user.setBalance(request.getAmount());
         userService.updateNonNullProperties(user);
-        return new ObjectDataResponse<>(user);
+        return new ObjectDataResponse<TAccountUser>(user);
     }
 
 }
